@@ -1,0 +1,1 @@
+/home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/.private/vp6242_robotiq85_description/share/vp6242_robotiq85_description/cmake/vp6242_robotiq85_descriptionConfig-version.cmake

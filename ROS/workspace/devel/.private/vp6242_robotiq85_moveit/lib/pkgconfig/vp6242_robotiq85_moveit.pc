@@ -1,0 +1,8 @@
+prefix=/home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/.private/vp6242_robotiq85_moveit
+
+Name: vp6242_robotiq85_moveit
+Description: Description of vp6242_robotiq85_moveit
+Version: 0.3.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

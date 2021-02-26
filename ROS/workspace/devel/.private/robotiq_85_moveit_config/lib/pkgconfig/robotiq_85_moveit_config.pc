@@ -1,0 +1,8 @@
+prefix=/home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/.private/robotiq_85_moveit_config
+
+Name: robotiq_85_moveit_config
+Description: Description of robotiq_85_moveit_config
+Version: 0.2.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

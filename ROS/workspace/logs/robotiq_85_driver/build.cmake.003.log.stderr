@@ -1,0 +1,4 @@
+[31m[1mCMake Error[0m at /home/andressa/Documents/TCC-Andressa/ROS/workspace/src/robotiq_85_gripper/robotiq_85_driver/CMakeLists.txt:5 (catkin_python_setup):
+  Unknown CMake command "catkin_python_setup".
+
+

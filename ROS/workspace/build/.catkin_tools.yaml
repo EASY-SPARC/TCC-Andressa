@@ -1,0 +1,6 @@
+devel_space: /home/andressa/Documents/TCC-Andressa/ROS/workspace/devel
+install: false
+install_space: /home/andressa/Documents/TCC-Andressa/ROS/workspace/install
+profile: default
+source_space: /home/andressa/Documents/TCC-Andressa/ROS/workspace/src
+workspace: /home/andressa/Documents/TCC-Andressa/ROS/workspace

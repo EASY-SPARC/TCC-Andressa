@@ -1,0 +1,1 @@
+/home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/.private/vp6242_robotiq85_gazebo/lib/pkgconfig/vp6242_robotiq85_gazebo.pc

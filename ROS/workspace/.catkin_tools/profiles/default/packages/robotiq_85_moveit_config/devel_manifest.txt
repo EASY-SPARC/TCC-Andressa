@@ -1,0 +1,5 @@
+robotiq_85_gripper/robotiq_85_moveit_config
+/home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/.private/robotiq_85_moveit_config/cmake.lock /home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/./cmake.lock
+/home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/.private/robotiq_85_moveit_config/lib/pkgconfig/robotiq_85_moveit_config.pc /home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/lib/pkgconfig/robotiq_85_moveit_config.pc
+/home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/.private/robotiq_85_moveit_config/share/robotiq_85_moveit_config/cmake/robotiq_85_moveit_configConfig.cmake /home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/share/robotiq_85_moveit_config/cmake/robotiq_85_moveit_configConfig.cmake
+/home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/.private/robotiq_85_moveit_config/share/robotiq_85_moveit_config/cmake/robotiq_85_moveit_configConfig-version.cmake /home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/share/robotiq_85_moveit_config/cmake/robotiq_85_moveit_configConfig-version.cmake

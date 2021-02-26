@@ -1,0 +1,8 @@
+prefix=/home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/.private/vp6242_gazebo
+
+Name: vp6242_gazebo
+Description: Description of vp6242_gazebo
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

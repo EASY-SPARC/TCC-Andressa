@@ -1,0 +1,8 @@
+prefix=/home/andressa/Documents/TCC-Andressa/ROS/workspace/install
+
+Name: vp6242_robotiq85_description
+Description: Description of vp6242_robotiq85_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

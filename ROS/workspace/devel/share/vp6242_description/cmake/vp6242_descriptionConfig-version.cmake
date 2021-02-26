@@ -1,0 +1,1 @@
+/home/andressa/Documents/TCC-Andressa/ROS/workspace/devel/.private/vp6242_description/share/vp6242_description/cmake/vp6242_descriptionConfig-version.cmake
