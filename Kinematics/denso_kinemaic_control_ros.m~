@@ -1,0 +1,170 @@
+clear all;
+close all;
+clear classes;
+clc;
+
+%% Start and Connect ROS
+
+setenv('ROS_MASTER_URI','http://10.42.0.250:11311')
+% setenv('ROS_IP','172.16.66.22')
+setenv('ROS_IP','10.42.0.250')
+rosinit;
+
+%%
+%Create a new DQ_kinematics object with the Denso standard Denavit-Hartenberg parameters           
+denso_kine = DQ_DENSO;
+
+% Basic definitions for the simulation
+theta = [0,0,0,0,0,0]';     
+
+% Move Arm
+
+sub = rossubscriber('/posestamped');
+my_sub= receive(sub,10);
+    
+position = [my_sub.Pose.Position.X,my_sub.Pose.Position.Y,my_sub.Pose.Position.Z];
+
+%position = [0.3892, 0.154 ,0.1981]
+
+
+thetad = [0,0,-1.57,0,0,0]';
+
+phi = pi/2;
+
+n_y =1;
+n_x =0;
+n_z =0;
+
+n_vec = [n_x,n_y,n_z];
+n = n_vec/norm(n_vec);
+
+n = DQ([0, n_vec(1), n_vec(2), n_vec(3)]);
+
+theta1 = atan2(position(2), position(1));
+rz = cos(theta1/2) + sin(theta1/2)*DQ([0, 0, 0, 1]);
+
+ry = cos(pi/4) + sin(pi/4)*DQ([0, 0, 1, 0]);
+
+r = cos(phi/2) + sin(phi/2)*n;
+
+r = ry * r;
+
+p = DQ([0, position(1), position(2), position(3)]);
+
+xd = r + 1/2 * DQ.E * p * r;
+
+epsilon = 0.001;
+K = 0.5;
+error = epsilon+1;
+lambda = 0.5;
+
+% Create Publisher of joints_states
+
+[pub, msg] = rospublisher('/ik_joint_states', 'sensor_msgs/JointState');
+msg.Name = [{'joint1'},{'joint2'},{'joint3'},{'joint4'},{'joint5'},{'joint6'}, {'gripper_finger1_joint'}];
+
+
+pause(1);
+
+% Create Subscriber
+
+xms = {}
+i = 0 ;
+while norm(error) > epsilon 
+    i = i+1;
+    jacob = denso_kine.jacobian(theta);
+    xm = denso_kine.fkm(theta);
+    error = vec8(xd-xm);
+%     xms{i}= xm;
+    xms(i)=vec9(xm) 
+    jacob_pinv = (transpose(jacob)/(jacob*transpose(jacob) + (lambda^2)*eye(8)));
+        
+     
+    theta = theta + K*jacob_pinv*error;
+    
+    theta1 = theta(1,:);
+    theta2 = theta(2,:);
+    theta3 = theta(3,:);
+    theta4 = theta(4,:);
+    theta5 = theta(5,:);
+    theta6 = theta(6,:);
+    msg.Position = [theta1,theta2,theta3,theta4,theta5,theta6, 1.0];
+    send(pub,msg);
+    
+    pause(0.001)
+    display('Execute')
+    
+    sub = rossubscriber('/posestamped');
+    my_sub= receive(sub,10);
+    
+    new_position = [my_sub.Pose.Position.X,my_sub.Pose.Position.Y,my_sub.Pose.Position.Z];
+    
+    if (new_position ~= position)
+        xd = set_xd(new_position)
+    end
+    
+end
+%1
+subplot(4, 2, 1);
+plot(xms(1,:)')
+hold on
+plot(xds(1,:)','r')
+xlabel("t(s)");
+legend('x_{m_1}', 'x_{d_1}');
+hold off
+%2
+subplot(4, 2, 2);
+plot(xms(2,:)')
+hold on
+plot(xds(2,:)','r')
+xlabel("t(s)");
+legend('x_{m_2}', 'x_{d_2}');
+hold off
+%3
+subplot(4, 2, 3);
+plot(xms(3,:)')
+hold on
+plot(xds(3,:)','r')
+xlabel("t(s)");
+legend('x_{m_3}', 'x_{d_3}');
+hold off
+%4
+subplot(4, 2, 4);
+plot(xms(4,:)')
+hold on
+plot(xds(4,:)','r')
+xlabel("t(s)");
+legend('x_{m_4}', 'x_{d_4}');
+hold off
+%5
+subplot(4, 2, 5);
+plot(xms(5,:)')
+hold on
+plot(xds(5,:)','r')
+xlabel("t(s)");
+legend('x_{m_5}', 'x_{d_5}');
+hold off
+%6
+subplot(4, 2, 6);
+plot(xms(6,:)')
+hold on
+plot(xds(6,:)','r')
+xlabel("t(s)");
+legend('x_{m_6}', 'x_{d_6}');
+hold off
+%7
+subplot(4, 2, 7);
+plot(xms(7,:)')
+hold on
+plot(xds(7,:)','r')
+xlabel("t(s)");
+legend('x_{m_7}', 'x_{d_7}');
+hold off
+%8
+subplot(4, 2, 8);
+plot(xms(8,:)')
+hold on
+plot(xds(8,:)','r')
+xlabel("t(s)");
+legend('x_{m_8}', 'x_{d_8}');
+hold off
